@@ -102,6 +102,25 @@ class ApiConfig {
         return self::$API_BASE_LIVE_URL;
     }
     
+    public static function setLocalhost() {
+        self::$API_BASE_SANDBOX_URL = "http://localhost:8080";
+        self::$API_BASE_LIVE_URL = "http://localhost:8080";
+    }
+
+        public static function unsetLocalhost() {
+            self::$API_BASE_SANDBOX_URL = "https://sandbox.api.mastercard.com";
+            self::$API_BASE_LIVE_URL = "https://api.mastercard.com";
+        }
+
+        public static function setAPIBaseCustomHosts($SandboxUrl = null, $LiveUrl = null) {
+            self::$API_BASE_SANDBOX_URL = $SandboxUrl == null ? self::$API_BASE_SANDBOX_URL : $SandboxUrl;
+            self::$API_BASE_LIVE_URL = $LiveUrl == null ? self::$API_BASE_LIVE_URL : $LiveUrl;
+        }
+
+        public static function unsetAPIBaseCustomHosts() {
+            self::unsetLocalhost();
+        }
+    
     
     /**
      * Sets the sandbox.
